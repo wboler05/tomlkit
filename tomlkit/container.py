@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 import copy
 
+from collections import OrderedDict
+
 from typing import Any
 from typing import Dict
 from typing import Generator
@@ -23,7 +25,7 @@ from .items import Whitespace
 from .items import item as _item
 
 
-class Container(dict):
+class Container(OrderedDict):
     """
     A container for items within a TOMLDocument.
     """
@@ -585,7 +587,7 @@ class Container(dict):
         return str(self.value)
 
     def __eq__(self, other):  # type: (Dict) -> bool
-        if not isinstance(other, dict):
+        if not isinstance(other, OrderedDict):
             return NotImplemented
 
         return self.value == other
